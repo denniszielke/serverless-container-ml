@@ -22,5 +22,5 @@ jobs:
     - name: 'Run az commands'
       run: |
         az deployment group create -g ${{ secrets.RESOURCE_GROUP }} -f ./deploy/main.bicep \
-          -p \
+          -p containerRegistryPath="ghcr.io/${{ github.repository_owner }}/container-apps/optimizer" \
             minReplicas=0

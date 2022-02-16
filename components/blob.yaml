@@ -10,7 +10,7 @@ spec:
   - name: storageAccount
     value: dserverless1
   - name: storageAccessKey
-    value: "YSBLEB9cMU3ouDq5cVNClY1mGoNWOeO+mksAAWdJ66Cb1nv+6byPvza/tWtEE/7qUjG7wytMGLYGxUCYpaKWpQ=="
+    value: ""
   - name: container
     value: items
   - name: decodeBase64
