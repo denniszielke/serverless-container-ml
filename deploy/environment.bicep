@@ -185,7 +185,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       dapr: {
         enabled: true
         appPort: 3000
-        appId: 'nodeapp'
+        appId: 'optimizer'
         components: [
           {
             name: 'bloboutput'
@@ -193,15 +193,15 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
             version: 'v1'
             metadata: [
               {
-                name: 'accountName'
+                name: 'storageAccount'
                 value: storageAccountName
               }
               {
-                name: 'accountKey'
+                name: 'storageAccessKey'
                 secretRef: 'storage-key'
               }
               {
-                name: 'containerName'
+                name: 'container'
                 value: containerName
               }            
               {
@@ -216,11 +216,11 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
             version: 'v1'
             metadata: [
               {
-                name: 'accountName'
+                name: 'storageAccount'
                 value: storageAccountName
               }
               {
-                name: 'accountKey'
+                name: 'storageAccessKey'
                 secretRef: 'storage-key'
               }
               {
