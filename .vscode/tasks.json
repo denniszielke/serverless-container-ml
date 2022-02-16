@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"appId": "optimizer",
+			"appPort": 6000,
+			"logLevel": "debug",
+			"componentsPath": "/Users/dennis/labs/serverless-container-ml/components",
+			"label": "daprd-debug",
+			"type": "daprd"
+		},
+		{
+			"appId": "optimizer",
+			"label": "daprd-down",
+			"type": "daprd-down"
+		}
+	]
+}
