@@ -170,7 +170,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
               type: 'azure-queue'
               metadata: {
                 queueName: queueName
-                messageCount: 3
+                messageCount: '3'
               }
               auth: [
                 {
