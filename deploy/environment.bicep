@@ -139,6 +139,10 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
           name: 'storage-key'
           value: '${listKeys(mediaStorageAccount.id, mediaStorageAccount.apiVersion).keys[0].value}'
         }
+        {
+          name: 'storage-connectionstring'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${mediaStorageAccount.name};EndpointSuffix=core.windows.net;AccountKey=${listKeys(mediaStorageAccount.id, mediaStorageAccount.apiVersion).keys[0].value}'
+        }
       ]      
       ingress: {
         external: true
@@ -158,7 +162,25 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       ]
       scale: {
         minReplicas: 1
-        maxReplicas: 1
+        maxReplicas: 10
+        rules: [
+          {
+            name: 'queue-based-autoscaling'
+            custom: {
+              type: 'azure-queue'
+              metadata: {
+                queueName: queueName
+                messageCount: 3
+              }
+              auth: [
+                {
+                  secretRef: 'storage-connectionstring'
+                  triggerParameter: 'connection'
+                }
+              ]
+            }
+          }
+        ]
       }
       dapr: {
         enabled: true
