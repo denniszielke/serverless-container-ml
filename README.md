@@ -1,5 +1,9 @@
 # serverless-container-ml
 
+This sample is taken from https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-container-apps-dapr-binding-example/ba-p/3045890
+
+![](/python.png)
+
 ## deployment guid
 
 ```
