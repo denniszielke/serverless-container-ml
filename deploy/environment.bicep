@@ -155,13 +155,13 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
           image: '${containerRegistryPath}'
           name: 'optimizer'
           resources: {
-            cpu: '0.5'
-            memory: '1Gi'
+            cpu: '2'
+            memory: '4Gi'
           }
         }
       ]
       scale: {
-        minReplicas: 1
+        minReplicas: 0
         maxReplicas: 10
         rules: [
           {

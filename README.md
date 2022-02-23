@@ -4,6 +4,17 @@ This sample is taken from https://techcommunity.microsoft.com/t5/apps-on-azure-b
 
 ![](/python.png)
 
+## create test data
+
+export AZURE_STORAGE_CONNECTION_STRING=""
+
+MESSAGE=$(echo -n "hello from azure cli" | base64)
+
+az storage message put --content $MESSAGE -q requests
+
+for i in {1..300}; do for i in {1..300}; az storage message put --content $MESSAGE -q requests; done
+
+
 ## deployment guid
 
 ```
