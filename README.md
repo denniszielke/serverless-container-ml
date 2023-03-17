@@ -20,7 +20,7 @@ bash ./deploy-infra.sh $PROJECT_NAME $LOCATION
 ```
 PROJECT_NAME="dzopt5"
 GITHUB_REPO_OWNER="denniszielke"
-IMAGE_TAG="main"
+IMAGE_TAG="latest"
 
 bash ./deploy-apps.sh $PROJECT_NAME $GITHUB_REPO_OWNER $IMAGE_TAG
 
