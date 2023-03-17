@@ -28,6 +28,7 @@ bash ./deploy-apps.sh $PROJECT_NAME $GITHUB_REPO_OWNER $IMAGE_TAG
 
 ## Create test data
 
+```
 export AZURE_STORAGE_CONNECTION_STRING=""
 
 MESSAGE=$(echo -n "hello from azure cli" | base64)
@@ -35,4 +36,4 @@ MESSAGE=$(echo -n "hello from azure cli" | base64)
 az storage message put --content $MESSAGE -q requests
 
 for i in {1..300}; do for i in {1..300}; az storage message put --content $MESSAGE -q requests; done
-
+```

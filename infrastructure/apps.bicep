@@ -12,6 +12,16 @@ module storage 'storage.bicep' = {
   }
 }
 
+module appqueueworkerdapr 'app-queue-worker-dapr.bicep' = {
+  name: 'container-app-queue-worker-dapr'
+  params: {
+    containerRegistryPath: 'ghcr.io/${containerRegistryOwner}/container-apps/optimizer-dapr:${imageTag}'
+    environmentName: '${projectName}'
+    storageAccountName: storage.outputs.storageAccountName
+    storageAccountKey: storage.outputs.storageAccountKey
+  }
+}
+
 module appqueueworker 'app-queue-worker.bicep' = {
   name: 'container-app-queue-worker'
   params: {

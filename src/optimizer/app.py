@@ -8,8 +8,8 @@ from flask import Flask,request
 app = Flask(__name__)
 
 #code
-daprPort = os.getenv('DAPR_HTTP_PORT')
-daprGRPCPort = os.environ.get('DAPR_GRPC_PORT')
+connectionstring = os.getenv('DAPR_HTTP_PORT')
+storageaccount = os.environ.get('DAPR_GRPC_PORT')
 print('>>>>>>>>DAPR_HTTP_PORT : '+ daprPort )
 print('>>>>>>>>DAPR_GRPC_PORT : '+ daprGRPCPort )
 
