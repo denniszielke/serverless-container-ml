@@ -2,6 +2,9 @@ import os
 import datetime
 import base64
 import requests
+import os, uuid
+from azure.identity import DefaultAzureCredential
+from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from io import BytesIO
 from flask import Flask,request
 app = Flask(__name__)
@@ -21,6 +24,12 @@ def incoming():
     base64_message = process_message(incomingtext,outputfile)
 
     print('>>>>>>Audio uploaded to storage.',flush="true")
+
+    blob_service_client = BlobServiceClient.from_connection_string(connect_str)
+
+    container_name = str(uuid.uuid4())
+
+    container_client = blob_service_client.create_container(container_name)
 
     return "Incoming message successfully processed!"
 

@@ -89,8 +89,8 @@ resource queueinput 'Microsoft.App/managedEnvironments/daprComponents@2022-06-01
   }
 }
 
-resource containerApp 'Microsoft.App/containerapps@2022-11-01-preview'  = {
-  name: 'optimizer'
+resource containerAppDapr 'Microsoft.App/containerapps@2022-11-01-preview'  = {
+  name: 'optimizer-dapr'
   kind: 'containerapp'
   location: location
   identity: {
