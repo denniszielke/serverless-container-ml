@@ -1,17 +1,17 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: bloboutput
+  name: output
 spec:
-  name: bloboutput
+  name: output
   type: bindings.azure.blobstorage
   version: v1
   metadata:
   - name: storageAccount
-    value: dserverless1
+    value: {.storageAccount}
   - name: storageAccessKey
-    value: ""
+    value: "{.storageAccessKey}"
   - name: container
-    value: items
+    value: output
   - name: decodeBase64
     value: "true"

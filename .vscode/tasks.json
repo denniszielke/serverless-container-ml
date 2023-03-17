@@ -5,7 +5,7 @@
 			"appId": "optimizer",
 			"appPort": 6000,
 			"logLevel": "debug",
-			"componentsPath": "/Users/dennis/labs/serverless-container-ml/components",
+			"componentsPath": "./components-local",
 			"label": "daprd-debug",
 			"type": "daprd"
 		},

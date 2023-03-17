@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+components/output.yaml
+components/queue.yaml
+
+output/*
+
+src/objectdetection/flickr30k_dataset/
+src/objectdetection/Dataset/
 # C extensions
 *.so
 

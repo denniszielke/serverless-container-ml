@@ -7,9 +7,9 @@ spec:
   version: v1
   metadata:
   - name: storageAccount
-    value: dserverless1
+    value: "{.storageAccount}"
   - name: storageAccessKey
-    value: ""
+    value: "{.storageAccessKey}"
   - name: queue
     value: requests
   - name: ttlInSeconds
