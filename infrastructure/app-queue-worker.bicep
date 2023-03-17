@@ -67,10 +67,6 @@ resource containerApp 'Microsoft.App/containerapps@2022-11-01-preview'  = {
           ]
           env:[
             {
-              name: 'PORT'
-              value: '8080'
-            }
-            {
               name: 'STORAGE_ACCOUNT'
               value: storageAccountName
             }
