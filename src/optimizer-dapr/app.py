@@ -2,18 +2,16 @@ import os
 import datetime
 import base64
 import requests
-import os, uuid
-from azure.identity import DefaultAzureCredential
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+from gtts import gTTS
 from io import BytesIO
 from flask import Flask,request
 app = Flask(__name__)
 
 #code
-storageAccount = os.getenv('STORAGE_ACCOUNT')
-storageAccountConnectionString = os.environ.get('STORAGE_ACCOUNT_CONNECTIONSTRING')
-print('>>>>>>>>STORAGE_ACCOUNT : '+ storageAccount )
-print('>>>>>>>>STORAGE_ACCOUNT_CONNECTIONSTRING : '+ storageAccountConnectionString )
+connectionstring = os.getenv('DAPR_HTTP_PORT')
+storageaccount = os.environ.get('DAPR_GRPC_PORT')
+print('>>>>>>>>DAPR_HTTP_PORT : '+ daprPort )
+print('>>>>>>>>DAPR_GRPC_PORT : '+ daprGRPCPort )
 
 @app.route("/queueinput", methods=['POST'])
 def incoming():
@@ -23,15 +21,26 @@ def incoming():
     outputfile = "Msg_"+datetime.datetime.now().strftime("%Y%m%d-%H%M%S-%f")+".mp3"
     base64_message = process_message(incomingtext,outputfile)
 
+    url = 'http://localhost:'+daprPort+'/v1.0/bindings/bloboutput'
+    uploadcontents = '{ "operation": "create", "data": "'+ base64_message+ '", "metadata": { "blobName": "'+ outputfile+'" } }'
+    #print(uploadcontents)
+    requests.post(url, data = uploadcontents)
     print('>>>>>>Audio uploaded to storage.',flush="true")
 
-    blob_service_client = BlobServiceClient.from_connection_string(connect_str)
-
-    container_name = str(uuid.uuid4())
-
-    container_client = blob_service_client.create_container(container_name)
-
     return "Incoming message successfully processed!"
+
+def process_message(incomingtext,outputfile):
+    tts = gTTS(text=incomingtext, lang='en', slow=False)
+    tts.save(outputfile)
+    print('>>>>>>>Audio saved to ' + outputfile,flush="true")
+
+    fin = open(outputfile, "rb")
+    binary_data = fin.read()
+    fin.close()
+    base64_encoded_data = base64.b64encode(binary_data)
+    base64_message = base64_encoded_data.decode('utf-8')
+
+    return base64_message
 
 if __name__ == '__main__':
     app.run(host="localhost", port=6000, debug=False)

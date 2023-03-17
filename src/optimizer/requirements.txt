@@ -1,0 +1,4 @@
+requests
+Flask
+azure-storage-blob
+azure-identity

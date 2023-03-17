@@ -1,4 +1,6 @@
+dapr-dev
+dapr-ext-grpc-dev
+dapr-ext-fastapi-dev
+gTTS
 requests
 Flask
-azure-storage-blob
-azure-identity
